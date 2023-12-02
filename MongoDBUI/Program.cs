@@ -1,11 +1,30 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿
+using Microsoft.Extensions.Configuration;
+
 namespace MongoDBUI
 {
-    static void Main(string[] args)
+    class Program
     {
-        Console.WriteLine("Done processing MongoDB");
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Done processing MongoDB");
 
-        Console.ReadLine();
+            Console.ReadLine();
+        }
+
+        private static string GetConnectionString(string connectionStringName = "Default")
+        {
+            string output = "";
+
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            var config = builder.Build();
+
+            output = config.GetConnectionString(connectionStringName);
+
+            return output;
+        }
     }
 }
