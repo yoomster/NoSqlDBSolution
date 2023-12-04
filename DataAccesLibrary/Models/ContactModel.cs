@@ -10,7 +10,7 @@ namespace DataAccesLibrary.Models
     public class ContactModel
     {
         [BsonId]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         public string FirstName { get; set; }
 
@@ -18,6 +18,6 @@ namespace DataAccesLibrary.Models
 
         public List<EmailAddressModel> EmailAddresses { get; set; } = new List<EmailAddressModel>();
 
-        public List<PhoneNumberModel> phoneNumbers { get; set; } = new List<PhoneNumberModel>();
+        public List<PhoneNumberModel> PhoneNumbers { get; set; } = new List<PhoneNumberModel>();
     }
 }
