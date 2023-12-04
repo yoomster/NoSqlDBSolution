@@ -17,22 +17,33 @@ namespace MongoDBUI
 
             ContactModel user = new ContactModel
             {
-                FirstName = "Naomi",
-                LastName = "Perenboom"
+                FirstName = "Adam",
+                LastName = "Akil"
             };
-            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "naomi@gmail.com" });
-            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "perenboom@gmail.com" });
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "adam@gmail.com" });
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
 
             user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
-            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612345678" });
+            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
 
-            CreateContact(user);
+            //CreateContact(user);
+
+            //GetallContacts();
 
 
             Console.WriteLine("Done processing MongoDB");
             Console.ReadLine();
         }
 
+        private static void GetallContacts()
+        {
+            var contacts = db.LoadRecords<ContactModel>(tableName);
+
+            foreach(var contact in contacts)
+            {
+                Console.WriteLine($"{contact.Id}: {contact.FirstName} {contact.LastName}");
+            }
+        }
         private static void CreateContact(ContactModel contact)
         {
             db.UpsertRecord(tableName, contact.Id, contact);
