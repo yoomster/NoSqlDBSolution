@@ -30,9 +30,22 @@ namespace MongoDBUI
 
             //GetallContacts();
 
+            GetContactById("b8a2ac7d-0340-4d4d-805a-f6621fda7d16");
+
+            // guid np: b8a2ac7d-0340-4d4d-805a-f6621fda7d16
+            //guid ak: fa7e0b65-2c0e-480d-8ab9-a315b8bb462d
+
 
             Console.WriteLine("Done processing MongoDB");
             Console.ReadLine();
+        }
+        private static void GetContactById(string id)
+        {
+            Guid guid = new Guid(id);
+
+            var contact = db.LoadRecordById<ContactModel>(tableName, guid);
+
+            Console.WriteLine($"{contact.Id}: {contact.FirstName} {contact.LastName}");
         }
 
         private static void GetallContacts()
