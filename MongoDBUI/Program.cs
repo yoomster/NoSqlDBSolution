@@ -50,8 +50,6 @@ namespace MongoDBUI
         {
             Guid guid = new Guid(id);
             db.DeleteRecord<ContactModel>(tableName, guid);
-
-
         }
 
         private static void RemovePhoneNumberFromUser(string phoneNumber, string id)
