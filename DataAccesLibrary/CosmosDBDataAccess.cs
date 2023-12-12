@@ -55,7 +55,25 @@ namespace DataAccesLibrary
 
             return output;
         }
+        public async Task<T> LoadRecordById<T>(string id)
+        {
+            string sql = "select * from c where c.id = @Id";
 
+            QueryDefinition queryDefinition = new QueryDefinition(sql).WithParameter("@Id", id);
+            FeedIterator<T> feedIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+            while (feedIterator.HasMoreResults)
+            {
+                FeedResponse<T> currentResultSet = await feedIterator.ReadNextAsync();
+
+                foreach (var item in currentResultSet)
+                {
+                    return item;
+                }
+            }
+
+            throw new Exception("Item not found");
+        }
         public async Task UpsertRecord<T>(T record)
         {
             await _container.UpsertItemAsync(record);
