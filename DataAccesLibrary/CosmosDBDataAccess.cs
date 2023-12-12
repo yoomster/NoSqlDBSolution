@@ -34,7 +34,27 @@ namespace DataAccesLibrary
             _container = _database.GetContainer(_containerName);
         }
 
+        public async Task<List<T>> LoadRecordsAsync<T>()
+        {
+            string sql = "select * from c";
 
+            QueryDefinition queryDefinition = new QueryDefinition(sql);
+            FeedIterator<T> feedIterator = _container.GetItemQueryIterator<T>(queryDefinition);
+
+            List<T> output = new List<T>();
+
+            while (feedIterator.HasMoreResults)
+            {
+                FeedResponse<T> currentResultSet = await feedIterator.ReadNextAsync();
+
+                foreach (var item in currentResultSet)
+                {
+                    output.Add(item);
+                }
+            }
+
+            return output;
+        }
 
         public async Task UpsertRecord<T>(T record)
         {
