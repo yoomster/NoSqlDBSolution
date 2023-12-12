@@ -11,7 +11,6 @@ namespace CosmosDBUI
     class Program
     {
         private static CosmosDBDataAccess db;
-        private static readonly string tableName = "Contacts";
 
         static void Main(string[] args)
         {
@@ -22,23 +21,23 @@ namespace CosmosDBUI
             Console.ReadLine();
         }
 
-        private static void RemoveUser(string id)
+        private static void RemoveUser()
         {
 
         }
 
-        private static void RemovePhoneNumberFromUser(string phoneNumber, string id)
+        private static void RemovePhoneNumberFromUser()
         {
 
 
         }
 
-        private static void UpdateFirstName(string firstName, string id)
+        private static void UpdateFirstName()
         {
 
         }
 
-        private static void GetContactById(string id)
+        private static void GetContactById()
         {
 
         }
@@ -48,7 +47,7 @@ namespace CosmosDBUI
 
         }
 
-        private static void CreateContact(ContactModel contact)
+        private static void CreateContact()
         {
         }
 
