@@ -1,4 +1,6 @@
 ﻿using Microsoft.Azure.Cosmos;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +32,13 @@ namespace DataAccesLibrary
             _cosmosClient = new CosmosClient(_endpointUrl, _primaryKey);
             _database = _cosmosClient.GetDatabase(_databaseName);
             _container = _database.GetContainer(_containerName);
+        }
+
+
+
+        public async Task UpsertRecord<T>(T record)
+        {
+            await _container.UpsertItemAsync(record);
         }
     }
 }
