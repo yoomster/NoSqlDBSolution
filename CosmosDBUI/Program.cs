@@ -45,6 +45,12 @@ namespace CosmosDBUI
             await CreateContact(user);
             await CreateContact(user2);
 
+            await GetAllContacts();
+
+            //NP:f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8
+            //AK:2a25c494-bbec-4350-99e6-8455a7d86c67
+
+
             Console.WriteLine("Done processing CosmosDB");
             Console.ReadLine();
 
@@ -71,14 +77,19 @@ namespace CosmosDBUI
 
         }
 
-        private static void GetallContacts()
+        private static async Task GetAllContacts()
         {
+            var contacts = await db.LoadRecordsAsync<ContactModel>();
 
+            foreach (var contact in contacts)
+            {
+                Console.WriteLine($"{contact.Id}: {contact.FirstName} {contact.LastName}");
+            }
         }
 
-        private static async Task CreateContact(ContactModel user)
+        private static async Task CreateContact(ContactModel contact)
         {
-            await db.UpsertRecordAsync(user);
+            await db.UpsertRecordAsync(contact);
         }
 
         private static (string endpointUrl, string primaryKey, string databaseName, string containerName) GetCosmosInfo()
