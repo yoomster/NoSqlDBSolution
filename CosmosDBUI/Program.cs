@@ -50,7 +50,10 @@ namespace CosmosDBUI
             //NP:f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8
             //AK:2a25c494-bbec-4350-99e6-8455a7d86c67
 
-            await GetContactById("2a25c494-bbec-4350-99e6-8455a7d86c67");
+            //await GetContactById("2a25c494-bbec-4350-99e6-8455a7d86c67");
+
+            await UpdateFirstName("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8", "Noom");
+            await GetContactById("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8");
 
 
             Console.WriteLine("Done processing CosmosDB");
@@ -69,9 +72,13 @@ namespace CosmosDBUI
 
         }
 
-        private static void UpdateFirstName()
+        private static async Task UpdateFirstName(string id, string firstName)
         {
+            var contact = await db.LoadRecordByIdAsync<ContactModel>(id);
 
+            contact.FirstName = firstName;
+
+            await db.UpsertRecordAsync(contact);
         }
 
         private static async Task GetContactById(string id)
