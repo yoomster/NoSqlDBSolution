@@ -42,13 +42,15 @@ namespace CosmosDBUI
             user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
             user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
 
-            await CreateContact(user);
-            await CreateContact(user2);
+            //await CreateContact(user);
+            //await CreateContact(user2);
 
-            await GetAllContacts();
+            //await GetAllContacts();
 
             //NP:f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8
             //AK:2a25c494-bbec-4350-99e6-8455a7d86c67
+
+            await GetContactById("2a25c494-bbec-4350-99e6-8455a7d86c67");
 
 
             Console.WriteLine("Done processing CosmosDB");
@@ -72,9 +74,11 @@ namespace CosmosDBUI
 
         }
 
-        private static void GetContactById()
+        private static async Task GetContactById(string id)
         {
+            var contact = await db.LoadRecordByIdAsync<ContactModel>(id);
 
+            Console.WriteLine($"{contact.Id}: {contact.FirstName} {contact.LastName}");
         }
 
         private static async Task GetAllContacts()
