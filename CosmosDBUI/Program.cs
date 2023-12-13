@@ -52,9 +52,10 @@ namespace CosmosDBUI
 
             //await GetContactById("2a25c494-bbec-4350-99e6-8455a7d86c67");
 
-            await UpdateFirstName("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8", "Noom");
-            await GetContactById("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8");
+            //await UpdateFirstName("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8", "Noom");
+            //await GetContactById("f96d7cdd-15e9-43ca-ba9c-78dd0c6092c8");
 
+            await RemovePhoneNumberFromUser("2a25c494-bbec-4350-99e6-8455a7d86c67", "0612884703");
 
             Console.WriteLine("Done processing CosmosDB");
             Console.ReadLine();
@@ -66,9 +67,13 @@ namespace CosmosDBUI
 
         }
 
-        private static void RemovePhoneNumberFromUser()
+        private static async Task RemovePhoneNumberFromUser(string id, string phoneNumber)
         {
+            var contact = await db.LoadRecordByIdAsync<ContactModel>(id);
 
+            contact.PhoneNumbers = contact.PhoneNumbers.Where(x => x.PhoneNumber != phoneNumber).ToList();
+
+            await db.UpsertRecordAsync(contact);
 
         }
 
