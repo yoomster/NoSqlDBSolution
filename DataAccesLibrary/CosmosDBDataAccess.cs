@@ -78,5 +78,10 @@ namespace DataAccesLibrary
         {
             await _container.UpsertItemAsync(record);
         }
+
+        public async Task DeleteRecordAsync<T>(string id, string partitionKey)
+        {
+            await _container.DeleteItemAsync<T>(id, new PartitionKey(partitionKey));
+        }
     }
 }
