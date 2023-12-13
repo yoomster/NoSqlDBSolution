@@ -55,7 +55,7 @@ namespace DataAccesLibrary
 
             return output;
         }
-        public async Task<T> LoadRecordById<T>(string id)
+        public async Task<T> LoadRecordByIdAsync<T>(string id)
         {
             string sql = "select * from c where c.id = @Id";
 
@@ -74,7 +74,7 @@ namespace DataAccesLibrary
 
             throw new Exception("Item not found");
         }
-        public async Task UpsertRecord<T>(T record)
+        public async Task UpsertRecordAsync<T>(T record)
         {
             await _container.UpsertItemAsync(record);
         }

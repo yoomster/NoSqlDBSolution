@@ -12,13 +12,42 @@ namespace CosmosDBUI
     {
         private static CosmosDBDataAccess db;
 
-        static void Main(string[] args)
+        static async Task Main(string[] args)
         {
             var  c = GetCosmosInfo();
             db = new CosmosDBDataAccess(c.endpointUrl, c.primaryKey, c.databaseName, c.containerName);
 
+
+            ContactModel user = new ContactModel
+            {
+                FirstName = "Naomi",
+                LastName = "Perenboom"
+            };
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "naomi@gmail.com" });
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
+
+            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
+            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
+
+
+
+            ContactModel user2 = new ContactModel
+            {
+                FirstName = "Adam",
+                LastName = "Akil"
+            };
+            user2.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "adam@gmail.com" });
+            user2.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
+
+            user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
+            user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
+
+            await CreateContact(user);
+            await CreateContact(user2);
+
             Console.WriteLine("Done processing CosmosDB");
             Console.ReadLine();
+
         }
 
         private static void RemoveUser()
@@ -47,8 +76,9 @@ namespace CosmosDBUI
 
         }
 
-        private static void CreateContact()
+        private static async Task CreateContact(ContactModel user)
         {
+            await db.UpsertRecordAsync(user);
         }
 
         private static (string endpointUrl, string primaryKey, string databaseName, string containerName) GetCosmosInfo()
