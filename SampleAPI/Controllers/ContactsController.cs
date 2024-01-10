@@ -1,4 +1,5 @@
 ﻿using DataAccesLibrary;
+using DataAccesLibrary.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace SampleAPI.Controllers
@@ -15,6 +16,19 @@ namespace SampleAPI.Controllers
         {
             _config = config;
             db = new MongoDBDataAccess("MongoContactsDB", _config.GetConnectionString("Default"));
+        }
+
+
+        [HttpGet]
+        public List<ContactModel> GetAll()
+        {
+            return db.LoadRecords<ContactModel>(tableName);
+        }
+
+        [HttpPost]
+        public void InsertRecord(ContactModel contact)
+        {
+            db.UpsertRecord(tableName, contact.Id, contact);
         }
     }
 }
