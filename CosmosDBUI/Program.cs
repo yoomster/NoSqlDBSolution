@@ -62,6 +62,7 @@ namespace CosmosDBUI
             Console.WriteLine("Done processing CosmosDB");
             Console.ReadLine();
 
+            //1.38 for deleting the azure DB; avoid costs!!
         }
 
         private static async Task RemoveUser(string id, string lastName)

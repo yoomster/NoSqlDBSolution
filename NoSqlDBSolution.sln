@@ -9,9 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccesLibrary", "DataAcc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CosmosDBUI", "CosmosDBUI\CosmosDBUI.csproj", "{AF85C60B-11B0-4DE4-A964-28B79773F93A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleAPI", "SampleAPI\SampleAPI.csproj", "{D81465C1-81E6-4153-874E-E9AB12E1BEBE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleAPI", "SampleAPI\SampleAPI.csproj", "{D81465C1-81E6-4153-874E-E9AB12E1BEBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDBUI", "ApiDBUI\ApiDBUI.csproj", "{4B789DCE-8917-42DF-8A9B-2F580338F06E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDBUI", "ApiDBUI\ApiDBUI.csproj", "{4B789DCE-8917-42DF-8A9B-2F580338F06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwapiApiHomeworkUI", "SwapiApiHomeworkUI\SwapiApiHomeworkUI.csproj", "{48CE811F-0284-4606-AB21-8ECE569EC024}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{4B789DCE-8917-42DF-8A9B-2F580338F06E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B789DCE-8917-42DF-8A9B-2F580338F06E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B789DCE-8917-42DF-8A9B-2F580338F06E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48CE811F-0284-4606-AB21-8ECE569EC024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48CE811F-0284-4606-AB21-8ECE569EC024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48CE811F-0284-4606-AB21-8ECE569EC024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48CE811F-0284-4606-AB21-8ECE569EC024}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

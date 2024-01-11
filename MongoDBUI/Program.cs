@@ -17,14 +17,23 @@ namespace MongoDBUI
 
             ContactModel user = new ContactModel
             {
+                FirstName = "Naomi",
+                LastName = "Perenboom"
+            };
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "naomi@gmail.com" });
+            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
+            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
+            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
+
+            ContactModel user2 = new ContactModel
+            {
                 FirstName = "Adam",
                 LastName = "Akil"
             };
-            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "adam@gmail.com" });
-            user.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
-
-            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
-            user.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
+            user2.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "adam@gmail.com" });
+            user2.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "akil@gmail.com" });
+            user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
+            user2.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0687654321" });
 
             //CreateContact(user);
 
@@ -32,15 +41,15 @@ namespace MongoDBUI
 
             //GetContactById("b8a2ac7d-0340-4d4d-805a-f6621fda7d16");
 
-            // guid np: b8a2ac7d-0340-4d4d-805a-f6621fda7d16
-            //guid ak: fa7e0b65-2c0e-480d-8ab9-a315b8bb462d
+            // guid nayoomi: b8a2ac7d-0340-4d4d-805a-f6621fda7d16
+            //guid naomi: 7f539ce8-51ad-40c6-844d-ccbfefd74fdf
 
-            //UpdateFirstName("Nayoomi", "b8a2ac7d-0340-4d4d-805a-f6621fda7d16");
+            //UpdateFirstName("Adam", "7f539ce8-51ad-40c6-844d-ccbfefd74fdf");
             //GetallContacts();
 
-            //RemovePhoneNumberFromUser("0612345678", "b8a2ac7d-0340-4d4d-805a-f6621fda7d16");
+            //RemovePhoneNumberFromUser("0687654321", "7f539ce8-51ad-40c6-844d-ccbfefd74fdf");
 
-            RemoveUser("fa7e0b65-2c0e-480d-8ab9-a315b8bb462d");
+            //RemoveUser("fa7e0b65-2c0e-480d-8ab9-a315b8bb462d");
 
             Console.WriteLine("Done processing MongoDB");
             Console.ReadLine();
