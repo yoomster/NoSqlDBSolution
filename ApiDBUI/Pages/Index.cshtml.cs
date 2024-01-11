@@ -19,6 +19,7 @@ namespace ApiDBUI.Pages
 
         public async Task OnGet()
         {
+            await CreateContact();
             await GetAllContacts();
         }
 
