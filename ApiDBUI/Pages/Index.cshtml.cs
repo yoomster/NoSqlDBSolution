@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Text.Json;
 using ApiDBUI.Models;
+using System.Text;
 
 namespace ApiDBUI.Pages
 {
@@ -19,6 +20,24 @@ namespace ApiDBUI.Pages
         public async Task OnGet()
         {
             await GetAllContacts();
+        }
+
+        private async Task CreateContact()
+        {
+            ContactModel contact = new ContactModel
+            {
+                FirstName = "Teddy",
+                LastName = "Saurus-Rex"
+            };
+            contact.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "teddy@gmail.com" });
+            contact.EmailAddresses.Add(new EmailAddressModel { EmailAddress = "kitty@gmail.com" });
+            contact.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612884703" });
+            contact.PhoneNumbers.Add(new PhoneNumberModel { PhoneNumber = "0612345678" });
+
+            var _client = _httpClientFactory.CreateClient();
+            var response = await _client.PostAsync(
+                "https://localhost:44387/api/contacts",
+                new StringContent(JsonSerializer.Serialize(contact), Encoding.UTF8, "application/json"));
         }
 
         private async Task GetAllContacts()
